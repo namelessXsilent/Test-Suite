@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Text Contrast Checker · QA Testing Resources</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="contrast.css" />
+  <script src="menu.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js" defer></script>
+  <script src="contrast.js" defer></script>
+</head>
+<body>
+
+  <!-- Red hamburger square -->
+  <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
+    <span class="bars"><span></span><span></span><span></span></span>
+  </button>
+
+  <!-- Overlay + slide-in side menu -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Site navigation">
+    <div class="drawer-head">
+      <h2>QA Testing Resources</h2>
+      <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
+    </div>
+    <nav>
+      <a href="index.html"><span class="num">⌂</span><span>Home</span></a>
+      <a href="contrast.html" aria-current="page"><span class="num">1</span><span>Text Contrast Checker</span></a>
+      <a href="buttons.html"><span class="num">2</span><span>Button Contrast Checker</span></a>
+      <a href="payload.html"><span class="num">3</span><span>AI Payload Library</span></a>
+      <a href="support.html"><span class="num">4</span><span>Device &amp; Browser Support</span></a>
+      <a href="marketshare.html" class="sub"><span class="num">%</span><span>Market Share</span></a>
+    </nav>
+  </aside>
+
+  <header class="masthead">
+    <span class="eyebrow">WCAG 2.2 · AA</span>
+    <h1>Text Contrast Checker</h1>
+    <p>Enter values by hand, or upload a screenshot — copy is detected with in-browser OCR and each
+       paragraph is checked as a single block against its background.</p>
+  </header>
+
+  <div class="page checker">
+
+    <!-- Criteria (top) -->
+    <div style="margin-bottom:1.5rem;">
+      <button class="criteria-toggle" id="criteria-toggle" aria-expanded="false" aria-controls="criteria-body">
+        <span>📋 WCAG 2.2 Level AA — passing criteria</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="criteria-body" id="criteria-body">
+        <div class="criteria-grid" style="margin-top:.75rem;">
+          <div class="criteria-item">
+            <h4>Normal Text (SC 1.4.3)</h4>
+            <p>Text &lt; <code>18pt (24px)</code> regular or &lt; <code>14pt (18.67px)</code> bold needs <code>4.5:1</code> contrast.</p>
+          </div>
+          <div class="criteria-item">
+            <h4>Large Text (SC 1.4.3)</h4>
+            <p>Text ≥ <code>18pt (24px)</code> regular or ≥ <code>14pt (18.67px)</code> bold needs only <code>3:1</code>.</p>
+          </div>
+          <div class="criteria-item">
+            <h4>Minimum Font Size</h4>
+            <p>No WCAG minimum, but best practice recommends ≥ <code>16px</code> for body copy.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manual entry -->
+    <div class="card">
+      <h2>✏️ Check values manually</h2>
+      <p class="section-hint">Know the values already? Enter them here — no screenshot needed. Results update as you type.</p>
+      <div class="controls">
+        <div class="control-group">
+          <span class="control-label">Font size</span>
+          <div class="size-field">
+            <input type="number" class="size-input" id="m-px" value="16" min="1" max="300" step="1" aria-label="Font size in px" />
+            <span class="size-label">px</span>
+            <input type="number" class="size-input" id="m-pt" value="12" min="1" max="300" step="1" aria-label="Font size in pt" />
+            <span class="size-label">pt</span>
+          </div>
+          <span class="size-badge size-badge-normal" id="m-size-badge">Normal</span>
+        </div>
+        <div class="control-group">
+          <span class="control-label">Weight</span>
+          <label class="bold-toggle" id="m-bold-wrap"><input type="checkbox" id="m-bold" />Bold</label>
+        </div>
+        <div class="control-group">
+          <span class="control-label">Text color</span>
+          <div class="color-editor">
+            <span class="swatch-btn" id="sw-m-text" style="background:#767676" title="Open color picker">
+              <input type="color" id="pk-m-text" value="#767676" />
+            </span>
+            <input type="text" class="hex-input" id="hex-m-text" value="#767676" maxlength="7" spellcheck="false" aria-label="Text color hex" />
+          </div>
+        </div>
+        <div class="control-group">
+          <span class="control-label">Background color</span>
+          <div class="color-editor">
+            <span class="swatch-btn" id="sw-m-bg" style="background:#FFFFFF" title="Open color picker">
+              <input type="color" id="pk-m-bg" value="#ffffff" />
+            </span>
+            <input type="text" class="hex-input" id="hex-m-bg" value="#FFFFFF" maxlength="7" spellcheck="false" aria-label="Background color hex" />
+          </div>
+        </div>
+      </div>
+      <div class="manual-result">
+        <div class="manual-preview" id="m-preview">
+          <span id="m-preview-text">The quick brown fox</span>
+        </div>
+        <div class="manual-readout">
+          <div class="manual-metric"><span class="manual-metric-label">Measured</span><span class="ratio" id="m-ratio">—</span></div>
+          <div class="manual-metric"><span class="manual-metric-label">Required</span><span class="ratio" id="m-required">—</span></div>
+          <div class="manual-metric"><span class="manual-metric-label">Result</span><span class="pill" id="m-pill">—</span></div>
+          <div class="manual-metric" id="m-fix-wrap" style="display:none;">
+            <span class="manual-metric-label">Suggested text color</span>
+            <span class="fix-swatch"><span class="sw" id="m-fix-swatch"></span><span class="hex" id="m-fix-hex"></span></span>
+          </div>
+          <button class="btn btn-ghost btn-sm" id="m-fix-apply" style="display:none;" title="Use this color as the text color above">Apply</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Upload -->
+    <div class="card">
+      <h2>🖼️ Upload your design</h2>
+      <div class="upload-zone" id="drop-zone">
+        <input type="file" id="file-input" accept="image/png,image/jpeg,image/webp,image/gif,image/bmp" />
+        <div class="upload-icon">📤</div>
+        <p><strong>Click to upload</strong> or drag &amp; drop</p>
+        <p class="file-types">PNG, JPG, WEBP, GIF, BMP</p>
+      </div>
+      <div class="paste-row">
+        <span class="paste-hint">…or press <kbd>Ctrl</kbd> + <kbd>V</kbd> to paste an image anywhere on this page</span>
+      </div>
+
+      <div class="error-banner" id="error-banner"></div>
+
+      <div class="image-viewer" id="image-viewer">
+        <div class="panels">
+          <div>
+            <div class="panel-label"><span class="dot dot-original"></span>Original</div>
+            <div class="canvas-wrap"><canvas id="preview-canvas"></canvas></div>
+          </div>
+          <div>
+            <div class="panel-label">
+              <span class="dot dot-annotated"></span>Detected Copy
+              <span class="count-badge" id="count-badge"></span>
+            </div>
+            <div class="canvas-wrap"><canvas id="annotated-canvas"></canvas></div>
+            <div class="analyzing" id="analyzing"><span class="dot-pulse"></span><span id="analyzing-text">Detecting text…</span></div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-block" id="run-btn" disabled>
+        <span class="spinner" id="spinner"></span>
+        <span id="btn-label">▶ Run WCAG 2.2 Tests</span>
+      </button>
+    </div>
+
+    <!-- Results -->
+    <div class="results-section" id="results-section">
+      <div class="summary-bar">
+        <div class="chip chip-total"><span class="n" id="stat-total">—</span><span class="l">Total blocks</span></div>
+        <div class="chip chip-pass"><span class="n" id="stat-pass">—</span><span class="l">Passed</span></div>
+        <div class="chip chip-fail"><span class="n" id="stat-fail">—</span><span class="l">Failed</span></div>
+      </div>
+
+      <div class="card">
+        <h2>📊 Results</h2>
+        <div class="table-toolbar">
+          <span class="edit-hint">✏️ Edit any color (picker, hex, or ⦿ eyedropper), font size, or weight — results update live</span>
+          <div style="display:flex;gap:.5rem;">
+            <button class="btn btn-ghost btn-sm" id="recheck-all-btn" style="display:none;">⚡ Re-check all</button>
+            <button class="btn btn-ghost btn-sm" id="reset-all-btn" style="display:none;">↺ Reset all</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th><th>Copy / paragraph</th><th>Font size</th><th>Text</th><th>Background</th>
+                <th>Required</th><th>Measured</th><th>Result</th><th>Suggested fix</th><th></th>
+              </tr>
+            </thead>
+            <tbody id="results-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

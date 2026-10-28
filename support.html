@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Device &amp; Browser Support · QA Testing Resources</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="support.css" />
+  <script src="menu.js" defer></script>
+</head>
+<body>
+
+  <!-- Red hamburger square -->
+  <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
+    <span class="bars"><span></span><span></span><span></span></span>
+  </button>
+
+  <!-- Overlay + slide-in side menu -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Site navigation">
+    <div class="drawer-head">
+      <h2>QA Testing Resources</h2>
+      <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
+    </div>
+    <nav>
+      <a href="index.html"><span class="num">⌂</span><span>Home</span></a>
+      <a href="contrast.html"><span class="num">1</span><span>Text Contrast Checker</span></a>
+      <a href="buttons.html"><span class="num">2</span><span>Button Contrast Checker</span></a>
+      <a href="payload.html"><span class="num">3</span><span>AI Payload Library</span></a>
+      <a href="support.html" aria-current="page"><span class="num">4</span><span>Device &amp; Browser Support</span></a>
+      <a href="marketshare.html" class="sub"><span class="num">%</span><span>Market Share</span></a>
+    </nav>
+  </aside>
+
+  <header class="masthead">
+    <span class="eyebrow">Support</span>
+    <h1>Device &amp; Browser Support</h1>
+    <p>Recommended OS, browser and device coverage for QA testing.</p>
+    <p class="intro-more">Market share and device support can differ between US and Worldwide. To determine what should be supported and what can be dropped, please see the <a href="marketshare.html">Market Share page</a>.</p>
+    <p class="source">Data last updated October 28, 2026.</p>
+  </header>
+
+  <main class="page">
+
+    <!-- Rules of thumb -->
+    <section id="rules" class="block" aria-labelledby="rules-h">
+      <h2 id="rules-h">Rules of thumb</h2>
+      <ul class="rules">
+        <li>
+          <h3>Default browsers only</h3>
+          <p>On mobile, we usually support only each device's default, pre-installed apps and settings. On iOS that's Safari. Chrome isn't installed by default, but it should still be checked because of its popularity.</p>
+        </li>
+        <li>
+          <h3>Latest versions</h3>
+          <p>Browsers usually auto-update, so only the latest version is supported. Safari updates with the OS, so it should be tested on each supported OS version.</p>
+        </li>
+        <li>
+          <h3>Samsung Internet on Samsung</h3>
+          <p>Samsung devices ship with both Chrome and Samsung Internet, so test both. Samsung Internet is supported only on Samsung devices.</p>
+        </li>
+        <li>
+          <h3>Social in-app browsers</h3>
+          <p>If a project targets social media, the page must work in each app's in-app browser (Facebook, Twitter, Instagram and so on), since those apps open links there by default.</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Desktop -->
+    <section id="desktop" class="block platform" style="--plat:#8b9dff" aria-labelledby="desktop-h">
+      <div class="plat-head">
+        <svg class="plat-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
+        <h2 id="desktop-h">Desktop</h2>
+      </div>
+      <div class="os-grid">
+        <article class="os">
+          <h3>Windows 11</h3>
+          <ul class="browsers">
+            <li><span class="b-name">Chrome</span><span class="pill">Latest</span></li>
+            <li><span class="b-name">Firefox</span><span class="pill">Latest</span></li>
+            <li><span class="b-name">Edge</span><span class="pill">Latest</span></li>
+          </ul>
+          <p class="note">All three auto-update when an update is available, so only the latest version is supported.</p>
+        </article>
+        <article class="os">
+          <h3>macOS Tahoe and up</h3>
+          <ul class="browsers">
+            <li><span class="b-name">Safari</span><span class="pill">Up to date with OS</span></li>
+            <li><span class="b-name">Chrome</span><span class="pill">Latest</span></li>
+          </ul>
+          <p class="note">Safari updates with the OS, so apply the latest OS updates. Chrome auto-updates, so only the latest version is supported.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Tablet -->
+    <section id="tablet" class="block platform" style="--plat:#3ad0b0" aria-labelledby="tablet-h">
+      <div class="plat-head">
+        <svg class="plat-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2"/><path d="M11 18.5h2"/></svg>
+        <h2 id="tablet-h">Tablet</h2>
+      </div>
+      <div class="os-grid">
+        <article class="os">
+          <h3>Android 13.0 and up</h3>
+          <ul class="browsers">
+            <li><span class="b-name">Chrome</span><span class="pill">Latest</span></li>
+            <li><span class="b-name">Samsung Internet</span><span class="pill">Latest · Samsung only</span></li>
+          </ul>
+          <p class="note">Auto-update is on by default in Google Play, so both browsers update when an update is available. Only the latest version is supported.</p>
+        </article>
+        <article class="os">
+          <h3>iPadOS 26 and up</h3>
+          <ul class="browsers">
+            <li><span class="b-name">Safari</span><span class="pill">iPadOS 26 and up</span></li>
+          </ul>
+          <p class="note">Any iPad that supports the supported iPadOS version should be tested.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Mobile -->
+    <section id="mobile" class="block platform" style="--plat:#f0b85a" aria-labelledby="mobile-h">
+      <div class="plat-head">
+        <svg class="plat-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/></svg>
+        <h2 id="mobile-h">Mobile</h2>
+      </div>
+      <div class="os-grid">
+        <article class="os">
+          <h3>Android 13 and up</h3>
+          <p class="device">Samsung Galaxy and Google Pixel. <a href="#devices">See supported devices</a></p>
+          <ul class="browsers">
+            <li><span class="b-name">Chrome</span><span class="pill">Latest</span></li>
+            <li><span class="b-name">Samsung Internet</span><span class="pill">Latest · Samsung only</span></li>
+          </ul>
+          <p class="note">Auto-update is on by default in Google Play, so both browsers update when an update is available. Only the latest version is supported. Samsung Internet is supported only on Samsung devices.</p>
+        </article>
+        <article class="os">
+          <h3>iOS 26 and up</h3>
+          <p class="device">iPhone 11 and up. <a href="#devices">See supported devices</a></p>
+          <ul class="browsers">
+            <li><span class="b-name">Safari</span><span class="pill">iOS 26 and up</span></li>
+            <li><span class="b-name">Chrome</span><span class="pill">Latest</span></li>
+          </ul>
+          <p class="note">Safari on iOS is the priority.</p>
+          <p class="note">Once iOS 27 gains market share, iOS 26 can become the lower priority.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Supported mobile devices -->
+    <section id="devices" class="block" aria-labelledby="devices-h">
+      <h2 id="devices-h">Supported mobile devices</h2>
+      <div class="dev-grid">
+        <article class="dev">
+          <h3>iOS and iPadOS</h3>
+          <dl class="dev-groups dev-stack">
+            <div>
+              <dt>iOS</dt>
+              <dd><strong>iPhone 11 and up</strong></dd>
+              <dd>All devices that support the current iOS version (and the previous version)</dd>
+              <dd><a href="https://support.apple.com/guide/iphone/supported-models-iphe3fa5df43/ios" target="_blank" rel="noopener">Apple's list of iPhone models supported by iOS<span class="sr-only"> (opens in a new tab)</span></a></dd>
+            </div>
+            <div>
+              <dt>iPadOS</dt>
+              <dd><strong>iPad mini (5th generation) and up</strong></dd>
+              <dd>All devices that support the current iPadOS version (and the previous version)</dd>
+              <dd><a href="https://support.apple.com/guide/ipad/ipad-models-compatible-with-ipados-26-ipad213a25b2/26/ipados/26" target="_blank" rel="noopener">Apple's list of iPad models supported by iPadOS 26<span class="sr-only"> (opens in a new tab)</span></a></dd>
+            </div>
+          </dl>
+        </article>
+        <article class="dev">
+          <h3>Android</h3>
+          <dl class="dev-groups">
+            <div>
+              <dt>Samsung Galaxy S series</dt>
+              <dd>S22 to S26 series</dd>
+            </div>
+            <div>
+              <dt>Samsung Galaxy A series</dt>
+              <dd>A56, A57 (the latest two)</dd>
+            </div>
+            <div>
+              <dt>Google Pixel</dt>
+              <dd>Pixel 9 to Pixel 11 series</dd>
+            </div>
+          </dl>
+          <p class="callout"><strong>Projects outside the US</strong> can also include Oppo, Vivo and Huawei devices.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Link to the Market Share sub-page -->
+    <a class="related" href="marketshare.html">
+      <span class="related-icon" aria-hidden="true">%</span>
+      <span class="related-text">
+        <span class="related-title">Market Share</span>
+        <span class="related-blurb">Browser, OS and social market share, tracked for the last 3 months. Use it to decide which browsers, operating systems and social platforms to support.</span>
+      </span>
+      <span class="related-arrow" aria-hidden="true">&rarr;</span>
+    </a>
+
+  </main>
+
+</body>
+</html>

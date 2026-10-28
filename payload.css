@@ -1,0 +1,187 @@
+/* ── AI Payload Library — page-specific styles (dark theme) ────────────── */
+:root {
+  --pl-accent:   #3ad0b0;   /* teal, matching the AI card on the home page */
+  --pl-accent-2: #2bb89a;
+  --pl-copied:   #3ad0b0;
+  --pl-danger:   #ff6b6b;
+}
+
+/* Fill the viewport exactly so the app scrolls internally (no page scrollbar). */
+html { height: 100%; }
+body { height: 100%; overflow: hidden; display: flex; flex-direction: column; }
+
+.checker { max-width: 1360px; }
+/* width:100% keeps the container a constant width (up to 1360px) regardless of
+   payload length — without it, margin:auto on a flex item shrinks to content. */
+.page.checker { flex: 1; min-height: 0; width: 100%; display: flex; flex-direction: column; padding-bottom: 1.5rem; }
+
+/* App shell: category sidebar + payload panel */
+.payload-app {
+  display: flex; gap: 1.25rem;
+  flex: 1; min-height: 0;
+}
+
+/* Sidebar */
+.pl-sidebar {
+  width: 300px; flex-shrink: 0; display: flex; flex-direction: column; min-height: 0;
+  background: linear-gradient(180deg, rgba(29,33,48,.85), rgba(23,26,36,.85));
+  border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+}
+.pl-search {
+  margin: .9rem .9rem .5rem; padding: .6rem .8rem; font-size: .88rem;
+  background: var(--panel-2); color: var(--ink);
+  border: 1px solid var(--border); border-radius: 8px; outline: none;
+}
+.pl-search:focus { border-color: var(--pl-accent); }
+.pl-tree { flex: 1; min-height: 0; overflow-y: auto; padding: .25rem 0; font-size: .85rem; user-select: none; }
+.tree-item {
+  padding: .5rem .9rem; cursor: pointer; border-left: 3px solid transparent;
+  display: flex; align-items: center; gap: .4rem; color: var(--muted);
+}
+.tree-label { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tree-del {
+  opacity: 0; flex-shrink: 0; background: transparent; border: none; color: var(--muted);
+  cursor: pointer; line-height: 0; padding: .15rem; border-radius: 5px;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: opacity .12s, color .12s, background .12s;
+}
+.tree-item:hover .tree-del, .tree-item:focus-within .tree-del { opacity: 1; }
+.tree-del:hover { color: var(--pl-danger); background: rgba(255,107,107,.12); }
+.tree-del svg, .pl-card-icon svg, .pl-title-edit svg { display: block; }
+.tree-item:hover { background: var(--panel-2); color: var(--ink); }
+.tree-item.selected { background: var(--panel-2); color: var(--pl-accent); border-left-color: var(--pl-accent); font-weight: 700; }
+.tree-item.group { font-weight: 700; color: var(--ink); }
+.tree-item.child { padding-left: 1.9rem; }
+.tree-children.collapsed { display: none; }
+.tree-divider { height: 1px; background: var(--border); margin: .7rem .9rem .2rem; }
+.tree-heading { font-size: .64rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; color: var(--faint); padding: .35rem .9rem .3rem; }
+.tree-empty { font-size: .76rem; color: var(--faint); padding: .1rem .9rem .5rem; line-height: 1.4; }
+.pl-actions { padding: .6rem .9rem .9rem; display: flex; flex-direction: column; gap: .5rem; border-top: 1px solid var(--border); }
+.pl-actions-split { display: flex; gap: .5rem; }
+.pl-actions-split .pl-side-btn { flex: 1; text-align: center; margin: 0; }
+
+/* Info icon next to the page title */
+.masthead-title { display: flex; align-items: center; gap: .55rem; }
+.info-btn {
+  background: transparent; border: none; color: var(--pl-accent); cursor: pointer;
+  padding: 2px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%;
+  transition: color .15s, transform .1s;
+}
+.info-btn:hover { color: #fff; transform: scale(1.1); }
+.info-btn svg { display: block; }
+
+/* Info dialog body */
+.pl-info-body { font-size: .9rem; color: var(--muted); line-height: 1.6; }
+.pl-info-body p { margin: .55rem 0; }
+.pl-info-body ul { margin: .4rem 0 .6rem 1.15rem; }
+.pl-info-body li { margin: .2rem 0; }
+.pl-info-body strong { color: var(--ink); }
+#infoClose { background: var(--panel-2); color: var(--ink); border: 1px solid var(--border); }
+#infoClose:hover { border-color: var(--pl-accent); }
+.pl-side-btn {
+  background: var(--panel-2); color: var(--ink); border: 1px solid var(--border);
+  border-radius: 8px; padding: .6rem .8rem; font-size: .82rem; font-weight: 600;
+  cursor: pointer; text-align: left; font-family: inherit; transition: border-color .15s, background .15s;
+}
+.pl-side-btn:hover { border-color: var(--pl-accent); }
+
+/* Main panel */
+.pl-main { flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column;
+  background: linear-gradient(180deg, rgba(29,33,48,.6), rgba(23,26,36,.6));
+  border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.pl-panel { flex: 1; min-height: 0; overflow-y: auto; padding: 1.25rem 1.25rem .25rem; }
+.pl-panel-head { display: flex; align-items: center; gap: .6rem; }
+.pl-panel-actions { display: flex; align-items: center; gap: .4rem; margin-left: auto; }
+.pl-icon-btn {
+  width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+  background: var(--panel-2); color: var(--muted); border: 1px solid var(--border);
+  border-radius: 8px; cursor: pointer; font-size: 1.1rem; line-height: 1; font-family: inherit; transition: opacity .15s, border-color .15s, color .15s;
+}
+.pl-icon-btn:hover { border-color: var(--pl-accent); color: var(--pl-accent); }
+
+/* Themed confirm dialog */
+.pl-confirm-msg { font-size: .92rem; color: var(--muted); line-height: 1.55; margin-top: .2rem; }
+#confirmOk { background: var(--pl-danger); color: #2a0b0b; }
+#confirmOk:hover { filter: brightness(1.06); }
+
+/* Thin, themed scrollbars so they blend with the rounded panels */
+.pl-tree, .pl-panel { scrollbar-width: thin; scrollbar-color: #3a3f52 transparent; }
+.pl-tree::-webkit-scrollbar, .pl-panel::-webkit-scrollbar { width: 10px; }
+.pl-tree::-webkit-scrollbar-track, .pl-panel::-webkit-scrollbar-track { background: transparent; }
+.pl-tree::-webkit-scrollbar-thumb, .pl-panel::-webkit-scrollbar-thumb {
+  background: #3a3f52; border-radius: 8px; border: 2px solid transparent; background-clip: padding-box;
+}
+.pl-tree::-webkit-scrollbar-thumb:hover, .pl-panel::-webkit-scrollbar-thumb:hover { background: #4a5068; }
+.pl-panel-title { font-size: 1.25rem; font-weight: 800; color: var(--ink); }
+.pl-panel-sub { font-size: .8rem; color: var(--faint); margin: .3rem 0 1rem; }
+.pl-status {
+  font-size: .8rem; color: var(--pl-accent); padding: .6rem 1rem;
+  background: var(--panel); border-top: 1px solid var(--border);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* Payload cards */
+.pl-card { background: var(--panel-2); border: 1px solid var(--border); border-radius: 10px; padding: .7rem .8rem .8rem; margin-bottom: .7rem; }
+.pl-card-head { display: flex; align-items: center; gap: .5rem; margin-bottom: .55rem; }
+.pl-card-name { font-size: .84rem; font-weight: 700; color: var(--ink); flex: 1; word-break: break-word; }
+.pl-copy-btn {
+  background: var(--pl-accent); color: #06231d; border: none; border-radius: 7px;
+  padding: .4rem .8rem; font-weight: 800; font-size: .76rem; cursor: pointer; flex-shrink: 0; font-family: inherit;
+}
+.pl-copy-btn:hover { background: var(--pl-accent-2); }
+.pl-copy-btn.copied { background: #a6e3a1; }
+/* Always-visible card action icons (edit / delete) */
+.pl-card-icon {
+  background: transparent; border: none; color: var(--faint); cursor: pointer;
+  padding: .3rem; border-radius: 6px; flex-shrink: 0; line-height: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: color .12s, background .12s;
+}
+.pl-card-icon:hover { background: var(--panel); }
+.pl-edit-btn:hover { color: var(--pl-accent); }
+.pl-del-btn:hover { color: var(--pl-danger); }
+
+/* Rename pencil next to a custom-collection title */
+.pl-title-edit {
+  background: transparent; border: none; color: var(--faint); cursor: pointer;
+  padding: .25rem; border-radius: 6px; line-height: 0; display: inline-flex; align-items: center;
+  transition: color .12s, background .12s;
+}
+.pl-title-edit:hover { color: var(--pl-accent); background: var(--panel-2); }
+.pl-preview {
+  background: #0a0b10; color: var(--ink); border: 1px solid var(--border); border-radius: 7px;
+  font-family: 'Consolas', Monaco, monospace; font-size: .78rem; padding: .55rem .65rem; margin: 0;
+  white-space: pre-wrap; word-break: break-word; overflow: hidden;
+}
+
+/* Add-custom modal */
+.pl-modal-overlay {
+  position: fixed; inset: 0; background: rgba(4,5,9,.66);
+  backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+  display: flex; align-items: center; justify-content: center; z-index: 60;
+}
+.pl-modal-overlay.hidden { display: none; }
+.pl-modal { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 1.4rem; width: 540px; max-width: 92vw; }
+.pl-modal h2 { margin: 0 0 1rem; font-size: 1.05rem; color: var(--pl-accent); }
+.pl-modal label { display: block; font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; color: var(--faint); margin: .8rem 0 .3rem; }
+.pl-modal input, .pl-modal textarea {
+  width: 100%; background: var(--panel-2); color: var(--ink); border: 1px solid var(--border);
+  border-radius: 8px; padding: .6rem .7rem; font-size: .88rem; outline: none; font-family: inherit;
+}
+.pl-modal textarea { font-family: 'Consolas', Monaco, monospace; min-height: 150px; resize: vertical; }
+.pl-modal input:focus, .pl-modal textarea:focus { border-color: var(--pl-accent); }
+.pl-modal-actions { display: flex; justify-content: flex-end; gap: .6rem; margin-top: 1.2rem; }
+.pl-modal-actions button { border: none; border-radius: 8px; padding: .6rem 1.2rem; font-size: .86rem; font-weight: 700; cursor: pointer; font-family: inherit; }
+#modalCancel { background: var(--panel-2); color: var(--ink); border: 1px solid var(--border); }
+#modalCancel:hover { border-color: var(--muted); }
+#modalSave { background: var(--pl-accent); color: #06231d; }
+#modalSave:hover { background: var(--pl-accent-2); }
+
+@media (max-width: 780px) {
+  body { overflow: auto; display: block; }        /* normal page scroll on mobile */
+  .page.checker { display: block; }
+  .payload-app { flex-direction: column; flex: none; }
+  .pl-sidebar { width: 100%; }
+  .pl-tree { max-height: 220px; }
+  .pl-main { min-height: 420px; }
+}

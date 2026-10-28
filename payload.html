@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Payload Library · QA Testing Resources</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="payload.css" />
+  <script src="menu.js" defer></script>
+  <script src="payload-data.js" defer></script>
+  <script src="payload.js" defer></script>
+</head>
+<body>
+
+  <!-- Red hamburger square -->
+  <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
+    <span class="bars"><span></span><span></span><span></span></span>
+  </button>
+
+  <!-- Overlay + slide-in side menu -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Site navigation">
+    <div class="drawer-head">
+      <h2>QA Testing Resources</h2>
+      <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
+    </div>
+    <nav>
+      <a href="index.html"><span class="num">⌂</span><span>Home</span></a>
+      <a href="contrast.html"><span class="num">1</span><span>Text Contrast Checker</span></a>
+      <a href="buttons.html"><span class="num">2</span><span>Button Contrast Checker</span></a>
+      <a href="payload.html" aria-current="page"><span class="num">3</span><span>AI Payload Library</span></a>
+      <a href="support.html"><span class="num">4</span><span>Device &amp; Browser Support</span></a>
+      <a href="marketshare.html" class="sub"><span class="num">%</span><span>Market Share</span></a>
+    </nav>
+  </aside>
+
+  <header class="masthead">
+    <span class="eyebrow">Red-Team</span>
+    <div class="masthead-title">
+      <h1>AI Payload Library</h1>
+      <button id="infoBtn" class="info-btn" aria-label="About this page" title="About this page">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 7.5h.01"/></svg>
+      </button>
+    </div>
+    <p>A searchable library of adversarial test payloads — pick a category, then copy any
+       payload to your clipboard with one click. Add your own; they're saved in this browser.</p>
+  </header>
+
+  <div class="page checker">
+    <div class="payload-app">
+      <aside class="pl-sidebar">
+        <input id="search" class="pl-search" type="text" placeholder="🔍 Search all payloads…" />
+        <div id="tree" class="pl-tree"></div>
+        <div class="pl-actions">
+          <button id="addBtn" class="pl-side-btn">➕  New collection</button>
+          <button id="clearBtn" class="pl-side-btn">🧹  Clear clipboard</button>
+          <div class="pl-actions-split">
+            <button id="exportBtn" class="pl-side-btn">⬇  Export JSON</button>
+            <button id="importBtn" class="pl-side-btn">⬆  Import JSON</button>
+          </div>
+          <input type="file" id="importFile" accept="application/json,.json" hidden />
+        </div>
+      </aside>
+      <section class="pl-main">
+        <div id="panel" class="pl-panel"></div>
+        <div id="status" class="pl-status">Ready. Select a category to view payloads.</div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Add collection / add payload modal -->
+  <div id="modalOverlay" class="pl-modal-overlay hidden">
+    <div class="pl-modal">
+      <h2 id="modalTitle">Add</h2>
+      <label id="modalNameLabel" for="modalName">Name</label>
+      <input id="modalName" type="text" placeholder="Name" />
+      <div id="modalContentWrap">
+        <label for="modalContent">Payload content</label>
+        <textarea id="modalContent" placeholder="Paste or type the payload here…"></textarea>
+      </div>
+      <div class="pl-modal-actions">
+        <button id="modalCancel">Cancel</button>
+        <button id="modalSave">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Info dialog -->
+  <div id="infoOverlay" class="pl-modal-overlay hidden">
+    <div class="pl-modal">
+      <h2>About the AI Payload Library</h2>
+      <div class="pl-info-body">
+        <p><strong>Default collections</strong> (SQL Injection, XSS, the AI Agent Testing sets, and so on)
+           are built into the site and always available to everyone.</p>
+        <p><strong>Collections and payloads you create</strong> are saved in this browser's
+           <em>local storage</em>. That means they:</p>
+        <ul>
+          <li>persist across refreshes and restarts on <strong>this browser</strong>,</li>
+          <li>are private to you — other visitors don't see them,</li>
+          <li>and are <strong>lost if you clear this browser's site data</strong> (or use private / incognito mode, or switch browsers or devices).</li>
+        </ul>
+        <p><strong>Export</strong> downloads all of your custom collections and additions as a single
+           JSON file — use it as a backup or to share your set with someone else.
+           <strong>Import</strong> reads such a file back in and <em>merges</em> it with what you already have
+           (nothing is overwritten unless a name matches exactly).</p>
+      </div>
+      <div class="pl-modal-actions">
+        <button id="infoClose">Got it</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Themed confirmation dialog -->
+  <div id="confirmOverlay" class="pl-modal-overlay hidden">
+    <div class="pl-modal">
+      <h2 id="confirmTitle">Are you sure?</h2>
+      <p class="pl-confirm-msg" id="confirmMsg"></p>
+      <div class="pl-modal-actions">
+        <button id="confirmCancel">Cancel</button>
+        <button id="confirmOk">Delete</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

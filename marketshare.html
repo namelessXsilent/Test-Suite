@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Market Share · QA Testing Resources</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="marketshare.css" />
+  <script src="menu.js" defer></script>
+  <script src="marketshare-data.js" defer></script>
+  <script src="marketshare.js" defer></script>
+</head>
+<body>
+
+  <!-- Red hamburger square -->
+  <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
+    <span class="bars"><span></span><span></span><span></span></span>
+  </button>
+
+  <!-- Overlay + slide-in side menu -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Site navigation">
+    <div class="drawer-head">
+      <h2>QA Testing Resources</h2>
+      <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
+    </div>
+    <nav>
+      <a href="index.html"><span class="num">⌂</span><span>Home</span></a>
+      <a href="contrast.html"><span class="num">1</span><span>Text Contrast Checker</span></a>
+      <a href="buttons.html"><span class="num">2</span><span>Button Contrast Checker</span></a>
+      <a href="payload.html"><span class="num">3</span><span>AI Payload Library</span></a>
+      <a href="support.html"><span class="num">4</span><span>Device &amp; Browser Support</span></a>
+      <a href="marketshare.html" class="sub" aria-current="page"><span class="num">%</span><span>Market Share</span></a>
+    </nav>
+  </aside>
+
+  <header class="masthead">
+    <span class="eyebrow">Support</span>
+    <h1>Market Share</h1>
+    <p>Browser, OS and social market share, tracked for the last 3 months. Use it to decide which browsers, operating systems and social platforms to support.</p>
+  </header>
+
+  <main class="page">
+
+    <!-- Column labels: US on the left, Worldwide on the right -->
+    <div class="split split-labels" aria-hidden="true">
+      <span>United States</span>
+      <span>Worldwide</span>
+    </div>
+
+    <!-- One section per data set, drawn by marketshare.js from marketshare-data.js -->
+    <div id="shares"></div>
+    <noscript><div class="placeholder">Turn on JavaScript to see the market share charts.</div></noscript>
+
+  </main>
+
+</body>
+</html>
