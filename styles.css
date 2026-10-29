@@ -180,6 +180,12 @@ header.masthead p  { margin-top: .7rem; color: var(--muted); font-size: 1.12rem;
 .tool-wide h3 { font-size: 1.55rem; }
 .tool-wide p.summary { font-size: .98rem; max-width: 44ch; }
 
+/* "Other Useful Tools" section on the homepage */
+.more-tools { margin-top: 4.5rem; }
+.more-tools > h2 { font-size: 1.6rem; font-weight: 800; letter-spacing: -.01em; }
+.more-tools > p { margin-top: .4rem; color: var(--muted); max-width: 62ch; }
+.more-tools .grid { margin-top: 1.5rem; }
+
 /* ── Empty page placeholder (sub-pages, pre-content) ──────────────── */
 .placeholder {
   margin-top: 2.5rem; padding: 4rem 2rem; text-align: center;

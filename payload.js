@@ -1,5 +1,5 @@
 /* ============================================================================
- * AI Payload Library — client-side, ported from injector.py and extended.
+ * AI Payload Library — client-side.
  * Built-in payloads come from window.PAYLOAD_DB (payload-data.js). Users can:
  *   • create named custom collections (stored under store.collections)
  *   • add payloads to ANY collection (built-in additions stored under

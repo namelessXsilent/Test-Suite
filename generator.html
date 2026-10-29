@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test File Generator · QA Testing Resources</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="generator.css" />
+  <script src="menu.js" defer></script>
+  <script src="generator.js" defer></script>
+</head>
+<body>
+
+  <!-- Red hamburger square -->
+  <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
+    <span class="bars"><span></span><span></span><span></span></span>
+  </button>
+
+  <!-- Overlay + slide-in side menu -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Site navigation">
+    <div class="drawer-head">
+      <h2>QA Testing Resources</h2>
+      <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
+    </div>
+    <nav>
+      <a href="index.html"><span class="num">⌂</span><span>Home</span></a>
+      <a href="contrast.html"><span class="num">1</span><span>Text Contrast Checker</span></a>
+      <a href="buttons.html"><span class="num">2</span><span>Button Contrast Checker</span></a>
+      <a href="payload.html"><span class="num">3</span><span>AI Payload Library</span></a>
+      <a href="support.html"><span class="num">4</span><span>Device &amp; Browser Support</span></a>
+      <a href="marketshare.html" class="sub"><span class="num">%</span><span>Market Share</span></a>
+      <a href="generator.html" aria-current="page"><span class="num">5</span><span>Test File Generator</span></a>
+    </nav>
+  </aside>
+
+  <header class="masthead">
+    <span class="eyebrow">Uploads</span>
+    <h1>Test File Generator</h1>
+    <p>Create dummy files of a chosen type and size for testing upload limits and file-type checks.</p>
+  </header>
+
+  <main class="page">
+    <form id="gen-form" class="gen" novalidate>
+
+      <fieldset class="gen-group">
+        <legend>File type</legend>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="type" value="png" checked><span>PNG</span></label>
+          <label class="chip"><input type="radio" name="type" value="jpg"><span>JPG</span></label>
+          <label class="chip"><input type="radio" name="type" value="gif"><span>GIF</span></label>
+          <label class="chip"><input type="radio" name="type" value="webp"><span>WebP</span></label>
+          <label class="chip"><input type="radio" name="type" value="bmp"><span>BMP</span></label>
+          <label class="chip"><input type="radio" name="type" value="svg"><span>SVG</span></label>
+          <label class="chip"><input type="radio" name="type" value="pdf"><span>PDF</span></label>
+          <label class="chip"><input type="radio" name="type" value="txt"><span>TXT</span></label>
+          <label class="chip"><input type="radio" name="type" value="csv"><span>CSV</span></label>
+          <label class="chip"><input type="radio" name="type" value="json"><span>JSON</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="gen-group">
+        <legend>Size</legend>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="size" value="0"><span>0 KB</span></label>
+          <label class="chip"><input type="radio" name="size" value="512000"><span>500 KB</span></label>
+          <label class="chip"><input type="radio" name="size" value="2097152" checked><span>2 MB</span></label>
+          <label class="chip"><input type="radio" name="size" value="5242880"><span>5 MB</span></label>
+          <label class="chip"><input type="radio" name="size" value="10485760"><span>10 MB</span></label>
+          <label class="chip"><input type="radio" name="size" value="15728640"><span>15 MB</span></label>
+          <label class="chip"><input type="radio" name="size" value="20971520"><span>20 MB</span></label>
+          <label class="chip"><input type="radio" name="size" value="52428800"><span>50 MB</span></label>
+        </div>
+        <p class="hint">Each file is just over the size you pick, so it's over a limit of that size. 0 KB gives an empty file.</p>
+      </fieldset>
+
+      <fieldset class="gen-group" id="dims-group">
+        <legend>Dimensions <span class="legend-note">(image files only)</span></legend>
+        <div class="dims">
+          <label>Width (px) <input type="text" id="gen-w" inputmode="numeric" autocomplete="off" value="1920"></label>
+          <span class="dims-x" aria-hidden="true">×</span>
+          <label>Height (px) <input type="text" id="gen-h" inputmode="numeric" autocomplete="off" value="1080"></label>
+        </div>
+      </fieldset>
+
+      <div class="gen-actions">
+        <p class="gen-file">File: <code id="gen-preview">test-file_2MB_1920x1080.png</code></p>
+        <button type="submit" class="gen-btn">Download test file</button>
+        <p id="gen-status" class="gen-status" role="status" aria-live="polite"></p>
+      </div>
+
+    </form>
+    <noscript><div class="placeholder">Turn on JavaScript to create test files.</div></noscript>
+  </main>
+
+</body>
+</html>
