@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alt Text Overlay · QA Testing Resources</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="alttext.css" />
+  <script src="menu.js" defer></script>
+  <script src="alttext.js" defer></script>
+</head>
+<body>
+
+  <!-- Red hamburger square -->
+  <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
+    <span class="bars"><span></span><span></span><span></span></span>
+  </button>
+
+  <!-- Overlay + slide-in side menu -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Site navigation">
+    <div class="drawer-head">
+      <h2>QA Testing Resources</h2>
+      <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
+    </div>
+    <nav>
+      <a href="index.html"><span class="num">⌂</span><span>Home</span></a>
+      <a href="contrast.html"><span class="num">1</span><span>Text Contrast Checker</span></a>
+      <a href="buttons.html"><span class="num">2</span><span>Button Contrast Checker</span></a>
+      <a href="payload.html"><span class="num">3</span><span>AI Payload Library</span></a>
+      <a href="support.html"><span class="num">4</span><span>Device &amp; Browser Support</span></a>
+      <a href="marketshare.html" class="sub"><span class="num">%</span><span>Market Share</span></a>
+      <a href="generator.html"><span class="num">5</span><span>Test File Generator</span></a>
+      <a href="alttext.html" aria-current="page"><span class="num">6</span><span>Alt Text Overlay</span></a>
+    </nav>
+  </aside>
+
+  <header class="masthead">
+    <span class="eyebrow">Accessibility</span>
+    <h1>Alt Text Overlay</h1>
+    <p>A bookmark tool that surfaces the alt text on every image on the page you're testing, so missing alt text stands out at a glance.</p>
+  </header>
+
+  <main class="page">
+
+    <!-- WCAG 2.2 AA alt text requirements -->
+    <section class="block" aria-labelledby="wcag-h">
+      <h2 id="wcag-h">WCAG 2.2 AA: alt text requirements</h2>
+      <p class="lead">
+        Alt text is covered by <strong>Success Criterion 1.1.1 Non-text Content</strong> (Level A, so required for AA).
+        Every image that conveys meaning needs a text alternative that serves the same purpose. Images that are purely
+        decorative must be marked so screen readers skip them.
+      </p>
+
+      <div class="cards">
+        <article class="card">
+          <h3>Informative images</h3>
+          <p>Photos, illustrations and icons that add information. The alt text describes what the image conveys in this context, not every visual detail.</p>
+          <p class="eg"><code>alt="Two developers reviewing a design on a laptop"</code></p>
+        </article>
+        <article class="card">
+          <h3>Functional images</h3>
+          <p>Images inside a link or button, and image buttons. The alt text says where the link goes or what the button does, not what the picture looks like.</p>
+          <p class="eg"><code>alt="Search"</code> on a magnifying-glass button</p>
+        </article>
+        <article class="card">
+          <h3>Decorative images</h3>
+          <p>Images that add nothing a user would miss: flourishes, background textures, or a photo that repeats nearby text. Mark them with an empty alt, or move them to CSS.</p>
+          <p class="eg"><code>alt=""</code> (empty, not missing)</p>
+        </article>
+        <article class="card">
+          <h3>Images of text</h3>
+          <p>The alt text contains the same words as the image. WCAG also asks for real text instead of images of text wherever possible (SC 1.4.5 Images of Text, Level AA).</p>
+          <p class="eg"><code>alt="Spring sale: 20% off everything"</code></p>
+        </article>
+        <article class="card">
+          <h3>Complex images</h3>
+          <p>Charts, diagrams and maps. Give a short alt text naming what the image is, plus a full description or data table nearby or linked from it.</p>
+          <p class="eg"><code>alt="Bar chart of sales by region, described below"</code></p>
+        </article>
+        <article class="card">
+          <h3>Missing alt is a failure</h3>
+          <p>An image with no <code>alt</code> attribute at all fails 1.1.1. Screen readers often fall back to reading the file name, such as "IMG underscore 4021 dot jpeg".</p>
+          <p class="eg">Every <code>&lt;img&gt;</code> needs an <code>alt</code>, even if it is empty.</p>
+        </article>
+      </div>
+
+      <div class="tips">
+        <h3>Things to look for when checking alt text</h3>
+        <ul>
+          <li>Alt text that starts with "Image of" or "Picture of". Screen readers already announce it as an image, so this should be removed.</li>
+          <li>Alt text that is a file name (such as "IMG_4021.jpg") or a vague word on its own, like "image", "photo" or "banner".</li>
+          <li>Alt text that repeats the text right next to the image. The image should usually be marked decorative with <code>alt=""</code> instead.</li>
+          <li>Images that contain words. Check that the alt text includes those words.</li>
+        </ul>
+        <p class="refs">
+          More detail:
+          <a href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html" target="_blank" rel="noopener">Understanding SC 1.1.1<span class="sr-only"> (opens in a new tab)</span></a> ·
+          <a href="https://www.w3.org/WAI/tutorials/images/decision-tree/" target="_blank" rel="noopener">W3C alt text decision tree<span class="sr-only"> (opens in a new tab)</span></a>
+        </p>
+      </div>
+    </section>
+
+    <!-- The bookmarklet -->
+    <section class="block" aria-labelledby="tool-h">
+      <h2 id="tool-h">Get the bookmarklet</h2>
+
+      <div class="get">
+        <div class="get-drag">
+          <a id="alt-bookmarklet" class="bookmarklet" href="#">Alt Text Overlay</a>
+          <p class="drag-hint">Drag this button to your bookmarks bar.</p>
+        </div>
+        <ol class="steps">
+          <li><strong>Show your bookmarks bar.</strong> Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd> (Mac).</li>
+          <li><strong>Drag the Alt Text Overlay button</strong> onto the bookmarks bar.</li>
+          <li><strong>Open the page you're testing</strong> and click the bookmark. Every image gets a label, and a summary appears in the bottom-right corner.</li>
+          <li><strong>Click the bookmark again</strong> (or the × on the summary) to hide the labels.</li>
+        </ol>
+      </div>
+
+      <h3 class="sub-h">What the colors mean</h3>
+      <ul class="legend">
+        <li><span class="sample ok">Alt text: A team meeting around a table</span><span>The image has alt text (or another accessible name). Check that it's accurate.</span></li>
+        <li><span class="sample missing">Missing alt text</span><span>No alt attribute or accessible name. This fails WCAG 1.1.1.</span></li>
+        <li><span class="sample deco">No alt text needed (marked decorative: alt="")</span><span>Marked as decorative, so screen readers skip it. Check that it really is decorative.</span></li>
+      </ul>
+
+      <div class="notes">
+        <h3>Good to know</h3>
+        <p class="important">
+          <span class="important-icon" aria-hidden="true">!</span>
+          <span><strong>The overlay can't judge whether alt text is accurate, or whether an image marked decorative really is.</strong>
+          It only shows what's there. A person still needs to check each image.</span>
+        </p>
+        <ul>
+          <li>It covers <code>&lt;img&gt;</code>, image buttons and anything with <code>role="img"</code>. CSS background images and inline SVGs without <code>role="img"</code> aren't labelled.</li>
+          <li>Images that load after you turn it on (for example, while scrolling) aren't labelled. Click the bookmark twice to refresh.</li>
+          <li>Works in desktop Chrome, Edge, Firefox and Safari. Bookmarklets aren't practical on phones.</li>
+        </ul>
+      </div>
+
+      <!-- Sample images. The missing alt below is intentional, so the overlay has something to flag. -->
+      <div class="try">
+        <div class="try-head">
+          <h3>Try it here</h3>
+          <button type="button" id="alt-try" class="try-btn">Turn overlay on or off</button>
+        </div>
+        <div class="try-grid">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='180'%3E%3Crect width='100%25' height='100%25' fill='%23243049'/%3E%3Ccircle cx='70' cy='60' r='26' fill='%23f0b85a'/%3E%3Cpath d='M0 180 L110 90 L180 150 L240 110 L320 180Z' fill='%233ad0b0'/%3E%3C/svg%3E"
+               width="320" height="180" alt="Mountains under a setting sun">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='180'%3E%3Crect width='100%25' height='100%25' fill='%233a2440'/%3E%3Crect x='110' y='40' width='100' height='100' rx='16' fill='%23ff8a8a'/%3E%3C/svg%3E"
+               width="320" height="180">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='180'%3E%3Crect width='100%25' height='100%25' fill='%23202734'/%3E%3Cpath d='M0 120 Q80 60 160 120 T320 120' stroke='%238b9dff' stroke-width='6' fill='none'/%3E%3C/svg%3E"
+               width="320" height="180" alt="">
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
