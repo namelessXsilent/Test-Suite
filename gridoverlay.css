@@ -1,0 +1,44 @@
+/* Design Grid Overlay page. Layout comes from alttext.css; these are the extras. */
+
+.page a.grid-bm { background: #ff8a8a; box-shadow: 0 8px 22px rgba(255,77,77,.25); }
+.page a.grid-bm:hover { background: #ffa3a3; }
+.page a.grid-bm:focus-visible { outline-color: #ff8a8a; }
+
+/* Legend samples */
+.gsample { display: block; height: 40px; border-radius: 6px; border: 1px solid var(--border); }
+.gs-base {
+  background:
+    repeating-linear-gradient(to bottom, rgba(56,189,248,.75) 0 1px, transparent 1px 32px),
+    repeating-linear-gradient(to bottom, rgba(56,189,248,.35) 0 1px, transparent 1px 8px),
+    var(--panel);
+}
+.gs-cols {
+  background:
+    repeating-linear-gradient(to right, rgba(255,77,77,.22) 0 30px, transparent 30px 42px),
+    var(--panel);
+}
+.gs-panel {
+  height: auto; padding: .45rem .6rem; color: var(--muted);
+  background: rgba(12,14,20,.96); font: .8rem/1.4 system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+.legend strong { color: var(--ink); }
+
+/* Auto layout table */
+.table-wrap { margin-top: .75rem; overflow-x: auto; }
+.auto-table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+.auto-table th, .auto-table td { padding: .55rem .8rem; text-align: left; border-bottom: 1px solid var(--border); }
+.auto-table thead th { color: var(--muted); font-weight: 700; font-size: .85rem; }
+.auto-table tbody th { font-weight: 600; }
+.auto-table td { color: var(--muted); }
+
+/* Demo layout */
+.grid-demo { margin-top: 16px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.gd-card {
+  padding: 24px; min-height: 96px; border-radius: 8px;
+  background: var(--panel-2); border: 1px solid var(--border);
+  font-weight: 700; color: var(--ink);
+}
+
+@media (max-width: 600px) {
+  .grid-demo { grid-template-columns: 1fr; }
+}

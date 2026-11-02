@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design Grid Overlay · QA Testing Resources</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Shares the bookmarklet page layout with the Alt Text Overlay -->
+  <link rel="stylesheet" href="alttext.css" />
+  <link rel="stylesheet" href="gridoverlay.css" />
+  <script src="menu.js" defer></script>
+  <script src="gridoverlay.js" defer></script>
+</head>
+<body>
+
+  <!-- Red hamburger square -->
+  <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
+    <span class="bars"><span></span><span></span><span></span></span>
+  </button>
+
+  <!-- Overlay + slide-in side menu -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Site navigation">
+    <div class="drawer-head">
+      <h2>QA Testing Resources</h2>
+      <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
+    </div>
+    <nav>
+      <a href="index.html"><span class="num">⌂</span><span>Home</span></a>
+      <a href="contrast.html"><span class="num">1</span><span>Text Contrast Checker</span></a>
+      <a href="buttons.html"><span class="num">2</span><span>Button Contrast Checker</span></a>
+      <a href="payload.html"><span class="num">3</span><span>AI Payload Library</span></a>
+      <a href="support.html"><span class="num">4</span><span>Device &amp; Browser Support</span></a>
+      <a href="marketshare.html" class="sub"><span class="num">%</span><span>Market Share</span></a>
+      <a href="generator.html"><span class="num">5</span><span>Test File Generator</span></a>
+      <a href="alttext.html"><span class="num">6</span><span>Alt Text Overlay</span></a>
+      <a href="gridoverlay.html" aria-current="page"><span class="num">7</span><span>Design Grid Overlay</span></a>
+    </nav>
+  </aside>
+
+  <header class="masthead">
+    <span class="eyebrow">Visual QA</span>
+    <h1>Design Grid Overlay</h1>
+    <p>A bookmark tool that lays an 8px baseline grid and a responsive 12-column layout over any page, so you can check spacing and alignment against the design.</p>
+  </header>
+
+  <main class="page">
+
+    <!-- What to check -->
+    <section class="block" aria-labelledby="check-h">
+      <h2 id="check-h">What to check with the grid</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>Vertical spacing</h3>
+          <p>Gaps between sections, cards, headings and paragraphs land on the baseline grid, usually in multiples of 8px (8, 16, 24, 32…).</p>
+        </article>
+        <article class="card">
+          <h3>Column alignment</h3>
+          <p>Content edges line up with the column edges, and elements span the number of columns the design shows.</p>
+        </article>
+        <article class="card">
+          <h3>Gutters and margins</h3>
+          <p>The space between columns and at the page edges matches the design, and stays consistent across the page.</p>
+        </article>
+        <article class="card">
+          <h3>Breakpoints</h3>
+          <p>Resize the window: the layout should switch column counts where the design does, without content spilling past the margins.</p>
+        </article>
+        <article class="card">
+          <h3>Max width</h3>
+          <p>On wide screens the content stops growing at the design's maximum width and stays centered.</p>
+        </article>
+        <article class="card">
+          <h3>Repeated components</h3>
+          <p>The same card, button or form field has the same padding and height everywhere it appears.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- The bookmarklet -->
+    <section class="block" aria-labelledby="tool-h">
+      <h2 id="tool-h">Get the bookmarklet</h2>
+
+      <div class="get">
+        <div class="get-drag">
+          <a id="grid-bookmarklet" class="bookmarklet grid-bm" href="#">Design Grid Overlay</a>
+          <p class="drag-hint">Drag this button to your bookmarks bar.</p>
+        </div>
+        <ol class="steps">
+          <li><strong>Show your bookmarks bar.</strong> Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd> (Mac).</li>
+          <li><strong>Drag the Design Grid Overlay button</strong> onto the bookmarks bar.</li>
+          <li><strong>Open the page you're testing</strong> and click the bookmark. The grid appears, with a control panel in the bottom-right corner.</li>
+          <li><strong>Match the design:</strong> switch Layout to <em>Custom</em> and enter the columns, gutter, margin and max width from the Figma layout grid.</li>
+          <li><strong>Click the bookmark again</strong> (or the × on the panel) to hide it.</li>
+        </ol>
+      </div>
+
+      <h3 class="sub-h">What you'll see</h3>
+      <ul class="legend">
+        <li><span class="gsample gs-base" aria-hidden="true"></span><span><strong>Blue lines:</strong> the baseline grid. A faint line every 8px and a stronger line every 32px. It scrolls with the page.</span></li>
+        <li><span class="gsample gs-cols" aria-hidden="true"></span><span><strong>Red columns:</strong> the layout columns, with gutters between them. They stay fixed to the window as you scroll.</span></li>
+        <li><span class="gsample gs-panel" aria-hidden="true">Viewport 1440 px · Desktop: 12 columns…</span><span><strong>Panel readout:</strong> the window width, the layout in use, and the exact column width.</span></li>
+      </ul>
+
+      <h3 class="sub-h">Auto (responsive) layout</h3>
+      <div class="table-wrap">
+        <table class="auto-table">
+          <caption class="sr-only">Default responsive layout grid</caption>
+          <thead><tr><th scope="col">Window width</th><th scope="col">Columns</th><th scope="col">Gutter</th><th scope="col">Side margins</th><th scope="col">Max width</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Under 600 px (phone)</th><td>4</td><td>16 px</td><td>16 px</td><td>None</td></tr>
+            <tr><th scope="row">600–1023 px (tablet)</th><td>8</td><td>24 px</td><td>32 px</td><td>None</td></tr>
+            <tr><th scope="row">1024 px and up (desktop)</th><td>12</td><td>24 px</td><td>32 px</td><td>1280 px</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="notes">
+        <h3>Good to know</h3>
+        <p class="important">
+          <span class="important-icon" aria-hidden="true">!</span>
+          <span><strong>The Auto layout is a common default, not your project's design.</strong>
+          Every design system sets its own columns, gutters and breakpoints. Switch to Custom and copy the values from the Figma layout grid before reporting misalignment.</span>
+        </p>
+        <ul>
+          <li>The overlay is for spotting problems by eye. Use the browser's developer tools or Figma's Inspect panel to confirm exact pixel values.</li>
+          <li>Settings reset when you turn the overlay off. It doesn't save anything to the site you're testing.</li>
+          <li>The overlay sits on top of the page but doesn't block clicks, so you can keep using the site with it on.</li>
+          <li>Works in desktop Chrome, Edge, Firefox and Safari.</li>
+        </ul>
+      </div>
+
+      <!-- Sample layout on an 8px rhythm to try the overlay on -->
+      <div class="try">
+        <div class="try-head">
+          <h3>Try it here</h3>
+          <button type="button" id="grid-try" class="try-btn">Turn grid on or off</button>
+        </div>
+        <div class="grid-demo">
+          <div class="gd-card">Card · 24px padding</div>
+          <div class="gd-card">Card · 24px padding</div>
+          <div class="gd-card">Card · 24px padding</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
